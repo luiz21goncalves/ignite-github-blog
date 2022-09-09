@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header`
   justify-content: center;
   height: 296px;
   position: relative;
+  z-index: -1;
 `
 
 export const HeaderLogo = styled.img`
