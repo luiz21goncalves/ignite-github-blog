@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header'
 import { PostCard } from './components/PostCard'
 import { Profile } from './components/Profile'
 import { SearchForm } from './components/SearchForm'
@@ -7,23 +6,19 @@ import * as S from './styles'
 export function Home() {
   return (
     <>
-      <Header />
+      <Profile />
 
-      <S.HomeContainer>
-        <Profile />
+      <SearchForm />
 
-        <SearchForm />
-
-        <S.HomeContent>
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-        </S.HomeContent>
-      </S.HomeContainer>
+      <S.HomeContent>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </S.HomeContent>
     </>
   )
 }
