@@ -1,6 +1,12 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { FONT_SIZES } from '../../../../constants'
+
+export const PostCardWrapper = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`
 
 export const PostCardContainer = styled.article`
   background-color: ${({ theme }) => theme['gray-600']};
