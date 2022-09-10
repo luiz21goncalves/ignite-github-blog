@@ -12,6 +12,7 @@ export const LinkContainer = styled.a`
   text-decoration: none;
   position: relative;
   cursor: pointer;
+  text-transform: uppercase;
 
   &::after {
     transition: opacity 300ms ease-in-out;
