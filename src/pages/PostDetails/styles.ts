@@ -8,4 +8,12 @@ export const Preview = styled(ReactMarkdown)`
   li {
     list-style-position: inside;
   }
+
+  a {
+    color: ${({ theme }) => theme['blue-500']};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `

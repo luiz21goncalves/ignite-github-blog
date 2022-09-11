@@ -32,7 +32,8 @@ export const Footer = styled.div`
     align-items: center;
     gap: 0.5rem;
 
-    span {
+    span,
+    time {
       color: ${({ theme }) => theme['gray-100']};
     }
   }

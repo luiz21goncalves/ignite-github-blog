@@ -9,9 +9,20 @@ import { Link as RouterRouterLink } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 
 import { Link } from '../../../../components/Link'
+import { formatRelativeDate, longFormatDate } from '../../../../utils'
 import * as S from './styles'
 
-export function PostDetailsHeader() {
+interface PostDetailsHeaderProps {
+  link: string
+  title: string
+  username: string
+  comments: number
+  createdAt: Date
+}
+
+export function PostDetailsHeader(props: PostDetailsHeaderProps) {
+  const { link, title, username, createdAt, comments } = props
+
   const { 'gray-400': gray400 } = useTheme()
 
   return (
@@ -24,32 +35,34 @@ export function PostDetailsHeader() {
           </Link>
         </RouterRouterLink>
 
-        <Link
-          href="http://github.com/luiz21goncalves"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href={link} target="_blank" rel="noopener noreferrer">
           Ver no github
           <FaExternalLinkAlt size={12} />
         </Link>
       </S.Header>
 
-      <h1>JavaScript data types and data structures</h1>
+      <h1>{title}</h1>
 
       <S.Footer>
         <div>
           <FaGithub size={16} color={gray400} />
-          <span>luiz21goncalves</span>
+          <span>{username}</span>
         </div>
 
         <div>
           <FaCalendarDay size={16} color={gray400} />
-          <span>Há 1 dia</span>
+
+          <time
+            title={longFormatDate(createdAt)}
+            dateTime={createdAt.toISOString()}
+          >
+            {formatRelativeDate(createdAt)}
+          </time>
         </div>
 
         <div>
           <FaComment size={16} color={gray400} />
-          <span>5 comentários</span>
+          <span>{comments} comentários</span>
         </div>
       </S.Footer>
     </S.Container>

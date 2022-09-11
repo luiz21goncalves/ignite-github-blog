@@ -3,7 +3,7 @@ import { api } from '.'
 const OWNER = 'luiz21goncalves'
 const REPO = 'ignite-github-blog'
 
-export interface Issues {
+export interface Issue {
   id: number
   html_url: string
   number: number
@@ -13,6 +13,7 @@ export interface Issues {
   user: {
     login: string
   }
+  comments: number
 }
 
 export async function getAllIssues() {

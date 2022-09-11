@@ -4,40 +4,33 @@ import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
+import { useIssues } from '../../contexts/IsseusContexts'
 import { PostDetailsHeader } from './components/PostDetailsHeader'
 import * as S from './styles'
 
-const markdown = `A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-* Lists
-* [ ] todo
-* [x] done
-
-A table:
-
-| Feature    | Support              |
-| ---------: | :------------------- |
-| CommonMark | 100%                 |
-| GFM        | 100% w/              |
-
-
-~~~js
-let number = 42;
-
-console.log({ number })
-~~~
-`
-
 export function PostDetails() {
   const { postId } = useParams()
+  const { findIssueByNumber } = useIssues()
 
-  console.log({ postId })
+  if (!postId) {
+    return null
+  }
+
+  const issue = findIssueByNumber(Number(postId))
+
+  if (!issue) {
+    return null
+  }
 
   return (
     <main>
-      <PostDetailsHeader />
+      <PostDetailsHeader
+        comments={issue.comments}
+        link={issue.html_url}
+        title={issue.title}
+        createdAt={new Date(issue.created_at)}
+        username={issue.user.login}
+      />
 
       <S.Preview
         remarkPlugins={[remarkGfm]}
@@ -63,7 +56,7 @@ export function PostDetails() {
           },
         }}
       >
-        {markdown}
+        {issue.body}
       </S.Preview>
     </main>
   )
