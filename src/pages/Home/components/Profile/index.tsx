@@ -1,4 +1,9 @@
-import { FaGithub, FaBuilding, FaUserFriends } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaBuilding,
+  FaUserFriends,
+  FaExternalLinkAlt,
+} from 'react-icons/fa'
 import { useTheme } from 'styled-components'
 
 import { Link } from '../../../../components/Link'
@@ -14,7 +19,15 @@ export function Profile() {
       <div>
         <S.ProfileHeader>
           <h1>Luiz Gonçalves</h1>
-          <Link>GITHUB</Link>
+
+          <Link
+            href="http://github.com/luiz21goncalves"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GITHUB
+            <FaExternalLinkAlt size={12} />
+          </Link>
         </S.ProfileHeader>
 
         <p>

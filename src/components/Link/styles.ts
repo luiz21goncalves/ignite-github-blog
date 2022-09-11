@@ -9,7 +9,6 @@ export const LinkContainer = styled.a`
   font-weight: 700;
   font-size: ${FONT_SIZES[12]};
   color: ${({ theme }) => theme['blue-500']};
-  text-decoration: none;
   position: relative;
   cursor: pointer;
   text-transform: uppercase;

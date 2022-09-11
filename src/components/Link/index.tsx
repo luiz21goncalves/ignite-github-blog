@@ -1,20 +1,13 @@
-import { AnchorHTMLAttributes } from 'react'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { AnchorHTMLAttributes, ReactNode } from 'react'
 
 import * as S from './styles'
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
-  children: string
+  children: ReactNode
 }
 
 export function Link(props: LinkProps) {
   const { children, ...attrs } = props
 
-  return (
-    <S.LinkContainer {...attrs}>
-      {children}
-
-      <FaExternalLinkAlt />
-    </S.LinkContainer>
-  )
+  return <S.LinkContainer {...attrs}>{children}</S.LinkContainer>
 }

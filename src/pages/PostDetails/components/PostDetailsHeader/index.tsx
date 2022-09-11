@@ -1,4 +1,11 @@
-import { FaGithub, FaCalendarDay, FaComment } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaCalendarDay,
+  FaComment,
+  FaExternalLinkAlt,
+  FaChevronLeft,
+} from 'react-icons/fa'
+import { Link as RouterRouterLink } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 
 import { Link } from '../../../../components/Link'
@@ -10,8 +17,21 @@ export function PostDetailsHeader() {
   return (
     <S.Container>
       <S.Header>
-        <Link>Voltar</Link>
-        <Link>Ver no github</Link>
+        <RouterRouterLink to="/">
+          <Link>
+            <FaChevronLeft size={12} />
+            Voltar
+          </Link>
+        </RouterRouterLink>
+
+        <Link
+          href="http://github.com/luiz21goncalves"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver no github
+          <FaExternalLinkAlt size={12} />
+        </Link>
       </S.Header>
 
       <h1>JavaScript data types and data structures</h1>
