@@ -1,29 +1,33 @@
 import { formatRelativeDate, longFormatDate } from '../../../../utils'
 import * as S from './styles'
 
-export function PostCard() {
-  const createdAt = new Date()
+interface PostCardProps {
+  number: number
+  title: string
+  content: string
+  createdAt: string
+}
+
+export function PostCard(props: PostCardProps) {
+  const { number, content, createdAt, title } = props
+
+  const formattedDate = new Date(createdAt)
 
   return (
-    <S.PostCardWrapper to="/post/1">
+    <S.PostCardWrapper to={`/post/${number}`}>
       <S.PostCardContainer>
         <S.PostCardHeader>
-          <strong>JavaScript data types and data structures</strong>
+          <strong>{title}</strong>
 
           <time
-            title={longFormatDate(createdAt)}
-            dateTime={createdAt.toISOString()}
+            title={longFormatDate(formattedDate)}
+            dateTime={formattedDate.toISOString()}
           >
-            {formatRelativeDate(createdAt)}
+            {formatRelativeDate(formattedDate)}
           </time>
         </S.PostCardHeader>
 
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have.
-        </p>
+        <p>{content}</p>
       </S.PostCardContainer>
     </S.PostCardWrapper>
   )
