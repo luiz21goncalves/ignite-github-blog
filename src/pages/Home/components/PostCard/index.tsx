@@ -1,13 +1,21 @@
+import { formatRelativeDate, longFormatDate } from '../../../../utils'
 import * as S from './styles'
 
 export function PostCard() {
+  const createdAt = new Date()
+
   return (
     <S.PostCardWrapper to="/post/1">
       <S.PostCardContainer>
         <S.PostCardHeader>
           <strong>JavaScript data types and data structures</strong>
 
-          <time>Há 1 dia</time>
+          <time
+            title={longFormatDate(createdAt)}
+            dateTime={createdAt.toISOString()}
+          >
+            {formatRelativeDate(createdAt)}
+          </time>
         </S.PostCardHeader>
 
         <p>

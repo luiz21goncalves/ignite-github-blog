@@ -24,8 +24,8 @@ export const PostCardContainer = styled.article`
 `
 
 export const PostCardHeader = styled.header`
-  display: grid;
-  grid-template-columns: 1fr 20%;
+  display: flex;
+  justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.25rem;
 
