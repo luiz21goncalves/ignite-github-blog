@@ -17,6 +17,12 @@ export const ProfileContainer = styled.section`
   }
 `
 
+export const ProfileContent = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+`
+
 export const ProfileHeader = styled.header`
   display: flex;
   align-items: center;

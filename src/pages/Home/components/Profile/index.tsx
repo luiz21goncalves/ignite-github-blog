@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   FaGithub,
   FaBuilding,
@@ -7,50 +8,50 @@ import {
 import { useTheme } from 'styled-components'
 
 import { Link } from '../../../../components/Link'
+import { getUser, User } from '../../../../services/api/get-user'
 import * as S from './styles'
 
 export function Profile() {
+  const [user, setUser] = useState<User>({} as User)
   const { 'gray-400': gray400 } = useTheme()
+
+  useEffect(() => {
+    getUser().then(setUser)
+  }, [])
 
   return (
     <S.ProfileContainer>
-      <img src="https://github.com/luiz21goncalves.png" alt="" />
+      <img src={user.avatar_url} alt="" />
 
-      <div>
+      <S.ProfileContent>
         <S.ProfileHeader>
-          <h1>Luiz Gonçalves</h1>
+          <h1>{user.name}</h1>
 
-          <Link
-            href="http://github.com/luiz21goncalves"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={user.html_url} target="_blank" rel="noopener noreferrer">
             GITHUB
             <FaExternalLinkAlt size={12} />
           </Link>
         </S.ProfileHeader>
 
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{user.bio}</p>
 
         <S.ProfileFooter>
           <div>
             <FaGithub size={16} color={gray400} />
-            <span>luiz21goncalves</span>
+            <span>{user.name}</span>
           </div>
-          <div>
-            <FaBuilding size={16} color={gray400} />
-            <span>Ferreri</span>
-          </div>
+          {user?.company && (
+            <div>
+              <FaBuilding size={16} color={gray400} />
+              <span>{user?.company}</span>
+            </div>
+          )}
           <div>
             <FaUserFriends size={16} color={gray400} />
-            <span>1 seguidor</span>
+            <span>{user?.followers} seguidores</span>
           </div>
         </S.ProfileFooter>
-      </div>
+      </S.ProfileContent>
     </S.ProfileContainer>
   )
 }
