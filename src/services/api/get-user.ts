@@ -1,4 +1,5 @@
 import { api } from '.'
+import { GITHUB } from '../../constants'
 
 export interface User {
   name: string
@@ -9,10 +10,8 @@ export interface User {
   avatar_url: string
 }
 
-const USER_NAME = 'luiz21goncalves'
-
 export async function getUser() {
-  const { data } = await api.get<User>(`/users/${USER_NAME}`)
+  const { data } = await api.get<User>(`/users/${GITHUB.username}`)
 
   return data
 }

@@ -1,7 +1,5 @@
 import { api } from '.'
-
-const OWNER = 'luiz21goncalves'
-const REPO = 'ignite-github-blog'
+import { GITHUB } from '../../constants'
 
 export interface Issue {
   id: number
@@ -17,7 +15,9 @@ export interface Issue {
 }
 
 export async function getAllIssues() {
-  const { data } = await api.get(`/repos/${OWNER}/${REPO}/issues`)
+  const { data } = await api.get(
+    `/repos/${GITHUB.username}/${GITHUB.repo}/issues`,
+  )
 
   return data
 }
