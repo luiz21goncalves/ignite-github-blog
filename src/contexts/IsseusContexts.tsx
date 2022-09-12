@@ -8,6 +8,7 @@ import {
 } from 'react'
 
 import { getAllIssues, Issue } from '../services/api/get-all-issues'
+import { searchIssue } from '../services/api/search-issue'
 
 interface IssuesContextProviderProps {
   children: ReactNode
@@ -16,6 +17,7 @@ interface IssuesContextProviderProps {
 interface IsseusContextData {
   issues: Issue[]
   findIssueByNumber: (data: number) => Issue | undefined
+  findIssueByText: (data: string) => Promise<void>
 }
 
 const IssuesContext = createContext({} as IsseusContextData)
@@ -34,8 +36,14 @@ export function IssuesContextProvider(props: IssuesContextProviderProps) {
     [issues],
   )
 
+  const findIssueByText = useCallback(async (query: string) => {
+    searchIssue(query).then(setIssues)
+  }, [])
+
   return (
-    <IssuesContext.Provider value={{ issues, findIssueByNumber }}>
+    <IssuesContext.Provider
+      value={{ issues, findIssueByNumber, findIssueByText }}
+    >
       {props.children}
     </IssuesContext.Provider>
   )

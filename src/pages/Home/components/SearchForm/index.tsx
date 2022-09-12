@@ -13,12 +13,12 @@ type SearchFormInputs = z.infer<typeof SearchFormSchema>
 export function SearchForm() {
   const { register, handleSubmit } = useForm<SearchFormInputs>()
 
-  const { issues } = useIssues()
+  const { issues, findIssueByText } = useIssues()
 
   async function handleSearchIssue(data: SearchFormInputs) {
     const { query } = data
 
-    console.log({ query })
+    await findIssueByText(query)
   }
 
   return (
